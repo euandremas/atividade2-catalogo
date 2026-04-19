@@ -41,7 +41,10 @@ function App() {
       </header>
 
       <section className="resumo">
-        <h3>Total do catálogo: R${precoTotal.toFixed(2)}</h3>
+        <h3>
+          Total do catálogo: R$
+          {precoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+        </h3>
       </section>
 
       <section className="formulario">
