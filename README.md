@@ -6,25 +6,23 @@ Projeto desenvolvido em React para a Atividade da Unidade 2 da disciplina de Fro
 
 A aplicação exibe um catálogo de produtos utilizando componentes React, props, JSX e manipulação de arrays com `map` e `reduce`.
 
-## Objetivo
-
-Demonstrar na prática os conceitos estudados na unidade:
-
-- evolução do Front-End
-- configuração de projeto React
-- componentes
-- props
-- JSX
-- renderização de listas com `map`
-- cálculo com `reduce`
-- renderização condicional com operador ternário
-
 ## Funcionalidades
 
 - Exibição de produtos em cards
-- Exibição de categoria e preço
-- Destaque para produtos em promoção
-- Cálculo do valor total do catálogo
+- Destaque visual para produtos em promoção
+- Cálculo automático do valor total do catálogo
+- Cadastro de novos produtos com atualização dinâmica da interface
+- Alternância entre modo claro e modo escuro
+
+## Conceitos aplicados
+
+- Componentes React
+- Props
+- JSX
+- useState
+- Renderização com `map`
+- Cálculo com `reduce`
+- Condicional com operador ternário
 
 ## Estrutura do projeto
 
@@ -34,8 +32,15 @@ src/
 │   └── ProdutoCard.jsx
 ├── data/
 │   └── produtos.js
-├── App.jsx
+├── App.js
 ├── App.css
 ├── index.js
 └── index.css
+```
+
+## Como executar
+
+```bash
+npm install
+npm start
 ```
