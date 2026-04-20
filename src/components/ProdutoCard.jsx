@@ -4,10 +4,10 @@ const formatarMoeda = (valor) =>
     currency: 'BRL',
   }).format(valor);
 
-function ProdutoCard({ nome, preco, categoria, promocao }) {
+function ProdutoCard({ nome, preco, categoria, promocao, children }) {
   return (
     <article className={`card ${promocao ? 'promocao' : ''}`}>
-      <h2>{nome}</h2>
+      <h3>{nome}</h3>
       <p>
         <strong>Categoria:</strong> {categoria}
       </p>
@@ -17,6 +17,7 @@ function ProdutoCard({ nome, preco, categoria, promocao }) {
       <p>
         <strong>Status:</strong> {promocao ? 'Em promoção' : 'Preço normal'}
       </p>
+      {children && <div className="card-acoes">{children}</div>}
     </article>
   );
 }

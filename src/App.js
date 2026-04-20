@@ -1,6 +1,10 @@
 import { useMemo, useState } from 'react';
 import './App.css';
-import ProdutoCard from './components/ProdutoCard';
+import Filtros from './components/Filtros';
+import FormProduto from './components/FormProduto';
+import Header from './components/Header';
+import ListaProdutos from './components/ListaProdutos';
+import SectionCard from './components/SectionCard';
 import produtosIniciais from './data/produtos';
 
 const formatarMoeda = (valor) =>
@@ -11,11 +15,26 @@ const formatarMoeda = (valor) =>
 
 function App() {
   const [produtos, setProdutos] = useState(produtosIniciais);
-  const [nome, setNome] = useState('');
-  const [preco, setPreco] = useState('');
-  const [categoria, setCategoria] = useState('');
-  const [promocao, setPromocao] = useState(false);
   const [modoEscuro, setModoEscuro] = useState(false);
+  const [busca, setBusca] = useState('');
+  const [categoriaSelecionada, setCategoriaSelecionada] = useState('Todas');
+
+  const categorias = useMemo(
+    () => [...new Set(produtos.map((produto) => produto.categoria))].sort(),
+    [produtos],
+  );
+
+  const produtosFiltrados = useMemo(() => {
+    return produtos
+      .filter((produto) =>
+        produto.nome.toLowerCase().includes(busca.trim().toLowerCase()),
+      )
+      .filter(
+        (produto) =>
+          categoriaSelecionada === 'Todas' ||
+          produto.categoria === categoriaSelecionada,
+      );
+  }, [produtos, busca, categoriaSelecionada]);
 
   const precoTotal = useMemo(
     () => produtos.reduce((total, produto) => total + produto.preco, 0),
@@ -27,57 +46,28 @@ function App() {
     [produtos],
   );
 
-  function limparFormulario() {
-    setNome('');
-    setPreco('');
-    setCategoria('');
-    setPromocao(false);
+  function limparFiltros() {
+    setBusca('');
+    setCategoriaSelecionada('Todas');
   }
 
-  function adicionarProduto(evento) {
-    evento.preventDefault();
-
-    const nomeTratado = nome.trim();
-    const categoriaTratada = categoria.trim();
-    const precoNumerico = Number(preco);
-
-    if (!nomeTratado || !categoriaTratada || precoNumerico <= 0) {
-      window.alert(
-        'Preencha nome, categoria e informe um preço maior que zero.',
-      );
-      return;
-    }
-
-    const novoProduto = {
-      id: Date.now(),
-      nome: nomeTratado,
-      preco: precoNumerico,
-      categoria: categoriaTratada,
-      promocao,
-    };
-
+  function adicionarProduto(novoProduto) {
     setProdutos((listaAtual) => [...listaAtual, novoProduto]);
-    limparFormulario();
+  }
+
+  function removerProduto(id) {
+    setProdutos((listaAtual) =>
+      listaAtual.filter((produto) => produto.id !== id),
+    );
   }
 
   return (
     <div className={`app ${modoEscuro ? 'dark' : ''}`}>
       <div className="container">
-        <header className="topo">
-          <div>
-            <span className="badge">Atividade 2</span>
-            <h1>Catálogo de Produtos</h1>
-            <p>Projeto desenvolvido em React para a Atividade da Unidade 2.</p>
-          </div>
-
-          <button
-            type="button"
-            className="toggle-tema"
-            onClick={() => setModoEscuro((valorAtual) => !valorAtual)}
-          >
-            {modoEscuro ? '☀️ Modo claro' : '🌙 Modo escuro'}
-          </button>
-        </header>
+        <Header
+          modoEscuro={modoEscuro}
+          aoAlternarTema={() => setModoEscuro((valorAtual) => !valorAtual)}
+        />
 
         <section className="resumo grade-resumo">
           <div className="resumo-item">
@@ -92,66 +82,33 @@ function App() {
             <span>Em promoção</span>
             <strong>{totalPromocoes}</strong>
           </div>
+          <div className="resumo-item">
+            <span>Produtos visíveis</span>
+            <strong>{produtosFiltrados.length}</strong>
+          </div>
         </section>
 
-        <section className="formulario">
-          <h2>Cadastrar novo produto</h2>
-          <form onSubmit={adicionarProduto}>
-            <input
-              type="text"
-              placeholder="Nome do produto"
-              value={nome}
-              onChange={(evento) => setNome(evento.target.value)}
-              required
-            />
+        <SectionCard titulo="Cadastrar novo produto">
+          <FormProduto aoAdicionar={adicionarProduto} />
+        </SectionCard>
 
-            <input
-              type="number"
-              placeholder="Preço"
-              value={preco}
-              onChange={(evento) => setPreco(evento.target.value)}
-              min="0.01"
-              step="0.01"
-              required
-            />
+        <SectionCard titulo="Filtrar catálogo">
+          <Filtros
+            busca={busca}
+            categoriaSelecionada={categoriaSelecionada}
+            categorias={categorias}
+            aoMudarBusca={setBusca}
+            aoMudarCategoria={setCategoriaSelecionada}
+            aoLimparFiltros={limparFiltros}
+          />
+        </SectionCard>
 
-            <input
-              type="text"
-              placeholder="Categoria"
-              value={categoria}
-              onChange={(evento) => setCategoria(evento.target.value)}
-              required
-            />
-
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                checked={promocao}
-                onChange={(evento) => setPromocao(evento.target.checked)}
-              />
-              Em promoção
-            </label>
-
-            <div className="acoes-formulario">
-              <button type="submit">Adicionar produto</button>
-              <button type="button" className="secundario" onClick={limparFormulario}>
-                Limpar
-              </button>
-            </div>
-          </form>
-        </section>
-
-        <section className="lista-produtos">
-          {produtos.map((produto) => (
-            <ProdutoCard
-              key={produto.id}
-              nome={produto.nome}
-              preco={produto.preco}
-              categoria={produto.categoria}
-              promocao={produto.promocao}
-            />
-          ))}
-        </section>
+        <SectionCard titulo="Lista de produtos">
+          <ListaProdutos
+            produtos={produtosFiltrados}
+            aoRemover={removerProduto}
+          />
+        </SectionCard>
       </div>
     </div>
   );
