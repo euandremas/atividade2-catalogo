@@ -17,6 +17,7 @@ A aplicação exibe um catálogo de produtos utilizando componentes React, props
 ## 🎯 Objetivo
 
 Aplicar na prática os conceitos estudados na Unidade 2, como:
+<<<<<<< HEAD
 
 - Evolução do Front-End
 - Criação de projetos com React
@@ -97,11 +98,94 @@ Aplicar na prática os conceitos da Unidade 3:
 - Manipulação com `filter` e `reduce`
 - Formulários controlados com `useState`
 - Separação de responsabilidades
+=======
+
+* Evolução do Front-End
+* Criação de projetos com React
+* Componentes reutilizáveis
+* Props
+* JSX
+* Renderização de listas com `map`
+* Cálculo com `reduce`
+* Condicional com operador ternário
+
+---
+
+## ⚙️ Funcionalidades
+
+* Exibição de produtos em cards
+* Destaque visual para produtos em promoção
+* Cálculo automático do valor total do catálogo
+* Cadastro de novos produtos com atualização dinâmica da interface
+* Interface organizada e responsiva
+
+---
+
+## 🧠 Conceitos Aplicados
+
+* Componentes React
+* Props (propriedades)
+* JSX (JavaScript XML)
+* useState (gerenciamento de estado)
+* Renderização de listas com `map`
+* Manipulação de dados com `reduce`
+* Condicional com operador ternário
+* Organização de código em módulos
+
+---
+
+## 📂 Estrutura do Projeto (Atividade 2)
+
+```
+src/
+├── components/
+│   └── ProdutoCard.jsx
+├── data/
+│   └── produtos.js
+├── App.js
+├── App.css
+├── index.js
+├── index.css
+```
+
+---
+
+## 📊 Diferença entre Console e Interface React
+
+Manipular dados no console permite testar lógica, mas não há interação visual.
+
+Já no React, os dados são renderizados diretamente na interface, permitindo interação dinâmica, atualização automática e melhor organização por meio de componentes reutilizáveis.
+
+---
+
+# 📘 Atividade 3 - Evolução do Projeto
+
+## 📘 Descrição
+
+Este projeto evolui o catálogo anterior, aplicando conceitos avançados de **componentização em React**.
+
+A aplicação permite visualizar, cadastrar, filtrar e remover produtos, com melhor organização e reutilização de código.
+
+---
+
+## 🎯 Objetivo
+
+Aplicar na prática os conceitos da Unidade 3:
+
+* Componentes reutilizáveis
+* Props
+* Children
+* Listas com `map`
+* Manipulação com `filter` e `reduce`
+* Formulários controlados com `useState`
+* Separação de responsabilidades
+>>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
 
 ---
 
 ## 🚀 Funcionalidades
 
+<<<<<<< HEAD
 - Listagem de produtos em cards
 - Cadastro de novos produtos
 - Remoção de produtos
@@ -109,6 +193,15 @@ Aplicar na prática os conceitos da Unidade 3:
 - Filtro por categoria
 - Destaque para produtos em promoção
 - Cálculo do valor total
+=======
+* Listagem de produtos em cards
+* Cadastro de novos produtos
+* Remoção de produtos
+* Filtro por nome
+* Filtro por categoria
+* Destaque para produtos em promoção
+* Cálculo do valor total
+>>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
 
 ---
 
@@ -116,26 +209,45 @@ Aplicar na prática os conceitos da Unidade 3:
 
 ### 🔹 Componentes
 
+<<<<<<< HEAD
 - `Header`
 - `SectionCard`
 - `FormProduto`
 - `ListaProdutos`
 - `ProdutoCard`
+=======
+* `Header`
+* `SectionCard`
+* `FormProduto`
+* `ListaProdutos`
+* `ProdutoCard`
+>>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
 
 ---
 
 ### 🔹 Props e Children
 
+<<<<<<< HEAD
 - Comunicação entre componentes via props
 - Uso de `children` para composição de layout
+=======
+* Comunicação entre componentes via props
+* Uso de `children` para composição de layout
+>>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
 
 ---
 
 ### 🔹 Listas e Arrays
 
+<<<<<<< HEAD
 - `map` → renderização
 - `filter` → filtros
 - `reduce` → total
+=======
+* `map` → renderização
+* `filter` → filtros
+* `reduce` → total
+>>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
 
 ---
 
@@ -172,8 +284,13 @@ npm start
 
 Este repositório contém a evolução do projeto.
 
+<<<<<<< HEAD
 - A **Atividade 2 corresponde à versão inicial**
 - A **Atividade 3 representa a evolução com novas funcionalidades**
+=======
+* A **Atividade 2 corresponde à versão inicial**
+* A **Atividade 3 representa a evolução com novas funcionalidades**
+>>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
 
 ---
 
