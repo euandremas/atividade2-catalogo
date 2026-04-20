@@ -1,24 +1,114 @@
-# 📦 Atividade 3 - Catálogo de Produtos (React)
+# 📦 Catálogo de Produtos em React
 
-## 📘 Descrição
+Este repositório contém a evolução do projeto desenvolvido nas atividades da disciplina de **Front-End Development**.
 
-Este projeto é a continuação do Catálogo de Produtos desenvolvido nas atividades anteriores, agora evoluído com os conceitos de **componentização em React**, conforme a Unidade 3.
+---
 
-A aplicação permite visualizar, cadastrar, filtrar e remover produtos, utilizando boas práticas de organização de código e reutilização de componentes.
+# 📘 Atividade 2 - Catálogo de Produtos em React
+
+## 📌 Descrição
+
+Projeto desenvolvido em React para a Atividade da Unidade 2.
+
+A aplicação exibe um catálogo de produtos utilizando componentes React, props, JSX e manipulação de arrays com `map` e `reduce`, permitindo a visualização dinâmica dos dados na interface.
 
 ---
 
 ## 🎯 Objetivo
 
-Aplicar na prática os conceitos de React abordados na Unidade 3:
+Aplicar na prática os conceitos estudados na Unidade 2, como:
+
+- Evolução do Front-End
+- Criação de projetos com React
+- Componentes reutilizáveis
+- Props
+- JSX
+- Renderização de listas com `map`
+- Cálculo com `reduce`
+- Condicional com operador ternário
+
+---
+
+## ⚙️ Funcionalidades
+
+- Exibição de produtos em cards
+- Destaque visual para produtos em promoção
+- Cálculo automático do valor total do catálogo
+- Cadastro de novos produtos com atualização dinâmica da interface
+- Interface organizada e responsiva
+
+---
+
+## 🧠 Conceitos Aplicados
+
+- Componentes React
+- Props (propriedades)
+- JSX (JavaScript XML)
+- useState (gerenciamento de estado)
+- Renderização de listas com `map`
+- Manipulação de dados com `reduce`
+- Condicional com operador ternário
+- Organização de código em módulos
+
+---
+
+## 📂 Estrutura do Projeto (Atividade 2)
+
+```
+src/
+├── components/
+│   └── ProdutoCard.jsx
+├── data/
+│   └── produtos.js
+├── App.js
+├── App.css
+├── index.js
+├── index.css
+```
+
+---
+
+## 📊 Diferença entre Console e Interface React
+
+Manipular dados no console permite testar lógica, mas não há interação visual.
+
+Já no React, os dados são renderizados diretamente na interface, permitindo interação dinâmica, atualização automática e melhor organização por meio de componentes reutilizáveis.
+
+---
+
+# 📘 Atividade 3 - Evolução do Projeto
+
+## 📘 Descrição
+
+Este projeto evolui o catálogo anterior, aplicando conceitos avançados de **componentização em React**.
+
+A aplicação permite visualizar, cadastrar, filtrar e remover produtos, com melhor organização e reutilização de código.
+
+---
+
+## 🎯 Objetivo
+
+Aplicar na prática os conceitos da Unidade 3:
 
 - Componentes reutilizáveis
-- Props (propriedades)
+- Props
 - Children
 - Listas com `map`
-- Manipulação de arrays (`filter`, `reduce`)
+- Manipulação com `filter` e `reduce`
 - Formulários controlados com `useState`
-- Organização e separação de responsabilidades
+- Separação de responsabilidades
+
+---
+
+## 🚀 Funcionalidades
+
+- Listagem de produtos em cards
+- Cadastro de novos produtos
+- Remoção de produtos
+- Filtro por nome
+- Filtro por categoria
+- Destaque para produtos em promoção
+- Cálculo do valor total
 
 ---
 
@@ -26,58 +116,30 @@ Aplicar na prática os conceitos de React abordados na Unidade 3:
 
 ### 🔹 Componentes
 
-A aplicação foi dividida em múltiplos componentes reutilizáveis:
-
-- `Header` → Cabeçalho da aplicação
-- `SectionCard` → Container com uso de `children`
-- `FormProduto` → Formulário para cadastro de produtos
-- `ListaProdutos` → Renderização da lista
-- `ProdutoCard` → Exibição individual de cada produto
+- `Header`
+- `SectionCard`
+- `FormProduto`
+- `ListaProdutos`
+- `ProdutoCard`
 
 ---
 
-### 🔹 Props
+### 🔹 Props e Children
 
-Os dados são passados entre componentes utilizando **props**, permitindo comunicação entre eles e tornando os componentes dinâmicos.
-
----
-
-### 🔹 Children
-
-O componente `SectionCard` e `ProdutoCard` utilizam a propriedade especial `children` para receber conteúdo adicional, aumentando a flexibilidade da aplicação.
+- Comunicação entre componentes via props
+- Uso de `children` para composição de layout
 
 ---
 
 ### 🔹 Listas e Arrays
 
-- `map` → Renderização dos produtos
-- `filter` → Filtro por nome e categoria
-- `reduce` → Cálculo do valor total do catálogo
+- `map` → renderização
+- `filter` → filtros
+- `reduce` → total
 
 ---
 
-### 🔹 Formulário
-
-Foi implementado um formulário controlado com `useState`, permitindo:
-
-- Adicionar novos produtos
-- Atualizar automaticamente a lista
-
----
-
-## 🚀 Funcionalidades
-
-- ✅ Listagem de produtos em formato de cards
-- ✅ Cadastro de novos produtos
-- ✅ Remoção de produtos
-- ✅ Filtro por nome
-- ✅ Filtro por categoria
-- ✅ Destaque visual para produtos em promoção
-- ✅ Cálculo do valor total do catálogo
-
----
-
-## 🗂️ Estrutura do Projeto
+## 🗂️ Estrutura do Projeto (Atividade 3)
 
 ```
 src/
@@ -100,32 +162,27 @@ src/
 ## ▶️ Como executar o projeto
 
 ```bash
-# Instalar dependências
 npm install
-
-# Rodar o projeto
 npm start
 ```
 
 ---
 
-## 📌 Entrega da Atividade
+## 📌 Observação importante
 
-O projeto atende aos requisitos da atividade:
+Este repositório contém a evolução do projeto.
 
-- ✔ Uso de componentes React
-- ✔ Comunicação via props
-- ✔ Uso de `children`
-- ✔ Listagem com `map`
-- ✔ Uso de `key`
-- ✔ Formulário funcional
-- ✔ Estilização dos componentes
+- A **Atividade 2 corresponde à versão inicial**
+- A **Atividade 3 representa a evolução com novas funcionalidades**
+
+---
+
+## 🔗 Link do Repositório
+
+👉 https://github.com/euandremas/atividade2-catalogo
 
 ---
 
 ## 👨‍💻 Autor
 
-Desenvolvido por André Santos
-Projeto acadêmico – Front-End Development
-
----
+**André Moreira Araújo dos Santos**
