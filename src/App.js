@@ -17,7 +17,12 @@ const formatarMoeda = (valor) =>
 
 function App() {
   const [produtos, setProdutos] = useState([]);
-  const [modoEscuro, setModoEscuro] = useState(false);
+
+  const [modoEscuro, setModoEscuro] = useState(() => {
+    const temaSalvo = localStorage.getItem('modoEscuro');
+    return temaSalvo ? JSON.parse(temaSalvo) : false;
+  });
+
   const [busca, setBusca] = useState('');
   const [categoriaSelecionada, setCategoriaSelecionada] = useState('Todas');
   const [carregandoProdutos, setCarregandoProdutos] = useState(true);
@@ -55,6 +60,10 @@ function App() {
   useEffect(() => {
     carregarProdutos();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('modoEscuro', JSON.stringify(modoEscuro));
+  }, [modoEscuro]);
 
   function limparFiltros() {
     setBusca('');
