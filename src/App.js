@@ -1,11 +1,13 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import Filtros from './components/Filtros';
 import FormProduto from './components/FormProduto';
 import Header from './components/Header';
 import ListaProdutos from './components/ListaProdutos';
 import SectionCard from './components/SectionCard';
-import produtosIniciais from './data/produtos';
+import StatusMessage from './components/StatusMessage';
+
+const API_URL = 'http://localhost:3001/produtos';
 
 const formatarMoeda = (valor) =>
   new Intl.NumberFormat('pt-BR', {
@@ -14,10 +16,14 @@ const formatarMoeda = (valor) =>
   }).format(valor);
 
 function App() {
-  const [produtos, setProdutos] = useState(produtosIniciais);
+  const [produtos, setProdutos] = useState([]);
   const [modoEscuro, setModoEscuro] = useState(false);
   const [busca, setBusca] = useState('');
   const [categoriaSelecionada, setCategoriaSelecionada] = useState('Todas');
+  const [carregandoProdutos, setCarregandoProdutos] = useState(true);
+  const [carregandoCadastro, setCarregandoCadastro] = useState(false);
+  const [carregandoRemocaoId, setCarregandoRemocaoId] = useState(null);
+  const [erroApi, setErroApi] = useState('');
 
   const categorias = useMemo(
     () => [...new Set(produtos.map((produto) => produto.categoria))].sort(),
@@ -37,7 +43,7 @@ function App() {
   }, [produtos, busca, categoriaSelecionada]);
 
   const precoTotal = useMemo(
-    () => produtos.reduce((total, produto) => total + produto.preco, 0),
+    () => produtos.reduce((total, produto) => total + Number(produto.preco), 0),
     [produtos],
   );
 
@@ -46,19 +52,86 @@ function App() {
     [produtos],
   );
 
+  useEffect(() => {
+    carregarProdutos();
+  }, []);
+
   function limparFiltros() {
     setBusca('');
     setCategoriaSelecionada('Todas');
   }
 
-  function adicionarProduto(novoProduto) {
-    setProdutos((listaAtual) => [...listaAtual, novoProduto]);
+  async function carregarProdutos() {
+    setCarregandoProdutos(true);
+    setErroApi('');
+
+    try {
+      const resposta = await fetch(API_URL);
+
+      if (!resposta.ok) {
+        throw new Error('Nao foi possivel carregar os produtos da API.');
+      }
+
+      const dados = await resposta.json();
+      setProdutos(dados);
+    } catch (erro) {
+      setErroApi(
+        'Falha ao conectar com a API. Verifique se o JSON Server esta em execucao.',
+      );
+    } finally {
+      setCarregandoProdutos(false);
+    }
   }
 
-  function removerProduto(id) {
-    setProdutos((listaAtual) =>
-      listaAtual.filter((produto) => produto.id !== id),
-    );
+  async function adicionarProduto(novoProduto) {
+    setCarregandoCadastro(true);
+    setErroApi('');
+
+    try {
+      const resposta = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(novoProduto),
+      });
+
+      if (!resposta.ok) {
+        throw new Error('Nao foi possivel cadastrar o produto.');
+      }
+
+      const produtoCriado = await resposta.json();
+      setProdutos((listaAtual) => [...listaAtual, produtoCriado]);
+      return produtoCriado;
+    } catch (erro) {
+      setErroApi('Erro ao cadastrar produto. Tente novamente.');
+      return null;
+    } finally {
+      setCarregandoCadastro(false);
+    }
+  }
+
+  async function removerProduto(id) {
+    setCarregandoRemocaoId(id);
+    setErroApi('');
+
+    try {
+      const resposta = await fetch(`${API_URL}/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!resposta.ok) {
+        throw new Error('Nao foi possivel remover o produto.');
+      }
+
+      setProdutos((listaAtual) =>
+        listaAtual.filter((produto) => produto.id !== id),
+      );
+    } catch (erro) {
+      setErroApi('Erro ao remover produto. Tente novamente.');
+    } finally {
+      setCarregandoRemocaoId(null);
+    }
   }
 
   return (
@@ -88,8 +161,19 @@ function App() {
           </div>
         </section>
 
+        {erroApi && (
+          <StatusMessage
+            tipo="erro"
+            titulo="Problema na comunicação com a API"
+            mensagem={erroApi}
+          />
+        )}
+
         <SectionCard titulo="Cadastrar novo produto">
-          <FormProduto aoAdicionar={adicionarProduto} />
+          <FormProduto
+            aoAdicionar={adicionarProduto}
+            carregandoCadastro={carregandoCadastro}
+          />
         </SectionCard>
 
         <SectionCard titulo="Filtrar catálogo">
@@ -104,10 +188,19 @@ function App() {
         </SectionCard>
 
         <SectionCard titulo="Lista de produtos">
-          <ListaProdutos
-            produtos={produtosFiltrados}
-            aoRemover={removerProduto}
-          />
+          {carregandoProdutos ? (
+            <StatusMessage
+              tipo="loading"
+              titulo="Carregando dados"
+              mensagem="Buscando produtos no servidor..."
+            />
+          ) : (
+            <ListaProdutos
+              produtos={produtosFiltrados}
+              aoRemover={removerProduto}
+              carregandoRemocaoId={carregandoRemocaoId}
+            />
+          )}
         </SectionCard>
       </div>
     </div>

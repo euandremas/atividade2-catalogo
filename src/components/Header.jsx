@@ -2,11 +2,11 @@ function Header({ modoEscuro, aoAlternarTema }) {
   return (
     <header className="topo">
       <div>
-        <span className="badge">Atividade 3</span>
+        <span className="badge">Atividade Final - Unidade 4</span>
         <h1>Catálogo de Produtos</h1>
         <p>
-          Projeto evoluído com componentes, props, children, formulário,
-          listagem e filtros.
+          Projeto evoluído com eventos, estado, integração com API, useEffect e
+          async/await.
         </p>
       </div>
 

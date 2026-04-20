@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function FormProduto({ aoAdicionar }) {
+function FormProduto({ aoAdicionar, carregandoCadastro }) {
   const [nome, setNome] = useState('');
   const [preco, setPreco] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -13,7 +13,7 @@ function FormProduto({ aoAdicionar }) {
     setPromocao(false);
   }
 
-  function handleSubmit(evento) {
+  async function handleSubmit(evento) {
     evento.preventDefault();
 
     const nomeTratado = nome.trim();
@@ -28,31 +28,37 @@ function FormProduto({ aoAdicionar }) {
     }
 
     const novoProduto = {
-      id: Date.now(),
       nome: nomeTratado,
       preco: precoNumerico,
       categoria: categoriaTratada,
       promocao,
     };
 
-    aoAdicionar(novoProduto);
-    limparFormulario();
+    const produtoCriado = await aoAdicionar(novoProduto);
+
+    if (produtoCriado) {
+      limparFormulario();
+    }
   }
 
   return (
-    <form className="form-produto" onSubmit={handleSubmit}>
+    <form className="formulario" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Nome do produto"
         value={nome}
         onChange={(e) => setNome(e.target.value)}
+        disabled={carregandoCadastro}
       />
 
       <input
         type="number"
+        min="0"
+        step="0.01"
         placeholder="Preço"
         value={preco}
         onChange={(e) => setPreco(e.target.value)}
+        disabled={carregandoCadastro}
       />
 
       <input
@@ -60,20 +66,29 @@ function FormProduto({ aoAdicionar }) {
         placeholder="Categoria"
         value={categoria}
         onChange={(e) => setCategoria(e.target.value)}
+        disabled={carregandoCadastro}
       />
 
-      <label>
+      <label className="checkbox">
         <input
           type="checkbox"
           checked={promocao}
           onChange={(e) => setPromocao(e.target.checked)}
+          disabled={carregandoCadastro}
         />
         Em promoção
       </label>
 
       <div className="acoes-formulario">
-        <button type="submit">Adicionar produto</button>
-        <button type="button" onClick={limparFormulario}>
+        <button type="submit" disabled={carregandoCadastro}>
+          {carregandoCadastro ? 'Salvando...' : 'Adicionar produto'}
+        </button>
+        <button
+          type="button"
+          className="secundario"
+          onClick={limparFormulario}
+          disabled={carregandoCadastro}
+        >
           Limpar
         </button>
       </div>

@@ -1,305 +1,138 @@
-# 📦 Catálogo de Produtos em React
+# Catalogo de Produtos em React
 
-Este repositório contém a evolução do projeto desenvolvido nas atividades da disciplina de **Front-End Development**.
+Este repositorio apresenta a evolucao do projeto desenvolvido nas atividades da disciplina de Front-End Development. A aplicacao comecou como um catalogo simples em React e foi ampliada ate chegar em uma versao com estado, eventos, filtros, integracao com API simulada e operacoes assincronas.
 
----
+## Evolucao do projeto
 
-# 📘 Atividade 2 - Catálogo de Produtos em React
+### Atividade 2
+- configuracao do projeto React
+- renderizacao de produtos com JSX
+- componentes reutilizaveis
+- uso de props
+- listas com `map`
+- total do catalogo com `reduce`
+- destaque para produtos em promocao
 
-## 📌 Descrição
+### Atividade 3
+- expansao da componentizacao
+- uso de `children`
+- formulario para cadastro de produtos
+- filtros por nome e categoria
+- remocao de produtos
+- organizacao visual em secoes e cards
 
-Projeto desenvolvido em React para a Atividade da Unidade 2.
+### Atividade 4
+- eventos `onClick` e `onSubmit`
+- gerenciamento de estado com `useState`
+- carregamento inicial com `useEffect`
+- comunicacao assincrona com `fetch`
+- funcoes assincronas com `async/await`
+- tratamento de carregamento e erro
+- persistencia dos dados com API simulada via `db.json`
 
-A aplicação exibe um catálogo de produtos utilizando componentes React, props, JSX e manipulação de arrays com `map` e `reduce`, permitindo a visualização dinâmica dos dados na interface.
+## Funcionalidades atuais
+- listagem de produtos em cards
+- cadastro de novos produtos
+- remocao de produtos
+- filtro por nome
+- filtro por categoria
+- destaque visual para promocoes
+- resumo com total do catalogo, quantidade de itens e quantidade em promocao
+- tema claro e escuro
+- mensagem de carregando enquanto a API responde
+- mensagem de erro quando a API nao esta disponivel
 
----
+## Componentes utilizados
+O projeto atende ao requisito de trabalhar com pelo menos sete componentes estilizados e funcionais.
 
-## 🎯 Objetivo
-
-Aplicar na prática os conceitos estudados na Unidade 2, como:
-<<<<<<< HEAD
-
-- Evolução do Front-End
-- Criação de projetos com React
-- Componentes reutilizáveis
-- Props
-- JSX
-- Renderização de listas com `map`
-- Cálculo com `reduce`
-- Condicional com operador ternário
-
----
-
-## ⚙️ Funcionalidades
-
-- Exibição de produtos em cards
-- Destaque visual para produtos em promoção
-- Cálculo automático do valor total do catálogo
-- Cadastro de novos produtos com atualização dinâmica da interface
-- Interface organizada e responsiva
-
----
-
-## 🧠 Conceitos Aplicados
-
-- Componentes React
-- Props (propriedades)
-- JSX (JavaScript XML)
-- useState (gerenciamento de estado)
-- Renderização de listas com `map`
-- Manipulação de dados com `reduce`
-- Condicional com operador ternário
-- Organização de código em módulos
-
----
-
-## 📂 Estrutura do Projeto (Atividade 2)
-
-```
-src/
-├── components/
-│   └── ProdutoCard.jsx
-├── data/
-│   └── produtos.js
-├── App.js
-├── App.css
-├── index.js
-├── index.css
-```
-
----
-
-## 📊 Diferença entre Console e Interface React
-
-Manipular dados no console permite testar lógica, mas não há interação visual.
-
-Já no React, os dados são renderizados diretamente na interface, permitindo interação dinâmica, atualização automática e melhor organização por meio de componentes reutilizáveis.
-
----
-
-# 📘 Atividade 3 - Evolução do Projeto
-
-## 📘 Descrição
-
-Este projeto evolui o catálogo anterior, aplicando conceitos avançados de **componentização em React**.
-
-A aplicação permite visualizar, cadastrar, filtrar e remover produtos, com melhor organização e reutilização de código.
-
----
-
-## 🎯 Objetivo
-
-Aplicar na prática os conceitos da Unidade 3:
-
-- Componentes reutilizáveis
-- Props
-- Children
-- Listas com `map`
-- Manipulação com `filter` e `reduce`
-- Formulários controlados com `useState`
-- Separação de responsabilidades
-=======
-
-* Evolução do Front-End
-* Criação de projetos com React
-* Componentes reutilizáveis
-* Props
-* JSX
-* Renderização de listas com `map`
-* Cálculo com `reduce`
-* Condicional com operador ternário
-
----
-
-## ⚙️ Funcionalidades
-
-* Exibição de produtos em cards
-* Destaque visual para produtos em promoção
-* Cálculo automático do valor total do catálogo
-* Cadastro de novos produtos com atualização dinâmica da interface
-* Interface organizada e responsiva
-
----
-
-## 🧠 Conceitos Aplicados
-
-* Componentes React
-* Props (propriedades)
-* JSX (JavaScript XML)
-* useState (gerenciamento de estado)
-* Renderização de listas com `map`
-* Manipulação de dados com `reduce`
-* Condicional com operador ternário
-* Organização de código em módulos
-
----
-
-## 📂 Estrutura do Projeto (Atividade 2)
-
-```
-src/
-├── components/
-│   └── ProdutoCard.jsx
-├── data/
-│   └── produtos.js
-├── App.js
-├── App.css
-├── index.js
-├── index.css
-```
-
----
-
-## 📊 Diferença entre Console e Interface React
-
-Manipular dados no console permite testar lógica, mas não há interação visual.
-
-Já no React, os dados são renderizados diretamente na interface, permitindo interação dinâmica, atualização automática e melhor organização por meio de componentes reutilizáveis.
-
----
-
-# 📘 Atividade 3 - Evolução do Projeto
-
-## 📘 Descrição
-
-Este projeto evolui o catálogo anterior, aplicando conceitos avançados de **componentização em React**.
-
-A aplicação permite visualizar, cadastrar, filtrar e remover produtos, com melhor organização e reutilização de código.
-
----
-
-## 🎯 Objetivo
-
-Aplicar na prática os conceitos da Unidade 3:
-
-* Componentes reutilizáveis
-* Props
-* Children
-* Listas com `map`
-* Manipulação com `filter` e `reduce`
-* Formulários controlados com `useState`
-* Separação de responsabilidades
->>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
-
----
-
-## 🚀 Funcionalidades
-
-<<<<<<< HEAD
-- Listagem de produtos em cards
-- Cadastro de novos produtos
-- Remoção de produtos
-- Filtro por nome
-- Filtro por categoria
-- Destaque para produtos em promoção
-- Cálculo do valor total
-=======
-* Listagem de produtos em cards
-* Cadastro de novos produtos
-* Remoção de produtos
-* Filtro por nome
-* Filtro por categoria
-* Destaque para produtos em promoção
-* Cálculo do valor total
->>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
-
----
-
-## 🧠 Conceitos aplicados
-
-### 🔹 Componentes
-
-<<<<<<< HEAD
+- `App`
 - `Header`
 - `SectionCard`
 - `FormProduto`
+- `Filtros`
 - `ListaProdutos`
 - `ProdutoCard`
-=======
-* `Header`
-* `SectionCard`
-* `FormProduto`
-* `ListaProdutos`
-* `ProdutoCard`
->>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
+- `StatusMessage`
 
----
+## Props e children
+- **Props** sao utilizadas para comunicar dados e acoes entre os componentes.
+- **Children** sao utilizados no componente `SectionCard`, permitindo compor diferentes blocos da interface de forma reutilizavel.
 
-### 🔹 Props e Children
+## Observacao sobre persistencia de dados
+Para esta atividade final, a persistencia foi implementada com **JSON Server** usando o arquivo `db.json`.
 
-<<<<<<< HEAD
-- Comunicação entre componentes via props
-- Uso de `children` para composição de layout
-=======
-* Comunicação entre componentes via props
-* Uso de `children` para composição de layout
->>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
+Essa abordagem substitui o uso de `localStorage` e foi escolhida porque aproxima o projeto de um cenario real de mercado, permitindo:
 
----
+- uso de multiplos metodos HTTP
+- integracao com `fetch`
+- controle assincrono com `async/await`
+- simulacao de uma API REST para cadastro, listagem e remocao
 
-### 🔹 Listas e Arrays
+## Metodos HTTP utilizados
+- `GET` para buscar os produtos iniciais
+- `POST` para cadastrar novos produtos
+- `DELETE` para remover produtos
 
-<<<<<<< HEAD
-- `map` → renderização
-- `filter` → filtros
-- `reduce` → total
-=======
-* `map` → renderização
-* `filter` → filtros
-* `reduce` → total
->>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
-
----
-
-## 🗂️ Estrutura do Projeto (Atividade 3)
-
-```
-src/
- ├── components/
- │     ├── Header.jsx
- │     ├── SectionCard.jsx
- │     ├── ProdutoCard.jsx
- │     ├── ListaProdutos.jsx
- │     ├── FormProduto.jsx
- │
- ├── data/
- │     └── produtos.js
- │
- ├── App.jsx
- ├── App.css
-```
-
----
-
-## ▶️ Como executar o projeto
+## Estrutura do projeto
 
 ```bash
+src/
+├── components/
+│   ├── Filtros.jsx
+│   ├── FormProduto.jsx
+│   ├── Header.jsx
+│   ├── ListaProdutos.jsx
+│   ├── ProdutoCard.jsx
+│   ├── SectionCard.jsx
+│   └── StatusMessage.jsx
+├── App.css
+├── App.js
+├── index.css
+└── index.js
+
+db.json
+README.md
+package.json
+```
+
+## Como executar o projeto
+
+### 1. Instalar as dependencias
+```bash
 npm install
+```
+
+### 2. Iniciar a API simulada
+```bash
+npm run api
+```
+
+A API sera executada em:
+
+```bash
+http://localhost:3001/produtos
+```
+
+### 3. Iniciar a aplicacao React
+Em outro terminal, execute:
+
+```bash
 npm start
 ```
 
----
+A aplicacao sera aberta em:
 
-## 📌 Observação importante
+```bash
+http://localhost:3000
+```
 
-Este repositório contém a evolução do projeto.
+## Requisitos da Atividade 4 atendidos
+- tratamento de eventos de clique e envio
+- gerenciamento de estado com `useState`
+- carregamento assincrono com `fetch` + `useEffect`
+- uso de `async/await`
+- exibicao de estado de carregamento
+- integracao com API simulada
 
-<<<<<<< HEAD
-- A **Atividade 2 corresponde à versão inicial**
-- A **Atividade 3 representa a evolução com novas funcionalidades**
-=======
-* A **Atividade 2 corresponde à versão inicial**
-* A **Atividade 3 representa a evolução com novas funcionalidades**
->>>>>>> 69250bab4fba71a9de5712cb416886ecc54c66ed
-
----
-
-## 🔗 Link do Repositório
-
-👉 https://github.com/euandremas/atividade2-catalogo
-
----
-
-## 👨‍💻 Autor
-
-**André Moreira Araújo dos Santos**
+## Entrega
+O projeto pode ser entregue por meio do link do repositorio no GitHub ou em arquivo compactado, conforme solicitado no AVA.

@@ -1,11 +1,14 @@
 import ProdutoCard from './ProdutoCard';
+import StatusMessage from './StatusMessage';
 
-function ListaProdutos({ produtos, aoRemover }) {
+function ListaProdutos({ produtos, aoRemover, carregandoRemocaoId }) {
   if (produtos.length === 0) {
     return (
-      <div className="sem-resultados">
-        <p>Nenhum produto encontrado com os filtros informados.</p>
-      </div>
+      <StatusMessage
+        tipo="info"
+        titulo="Nenhum produto encontrado"
+        mensagem="Tente ajustar os filtros ou cadastre um novo item no catálogo."
+      />
     );
   }
 
@@ -19,8 +22,12 @@ function ListaProdutos({ produtos, aoRemover }) {
           categoria={produto.categoria}
           promocao={produto.promocao}
         >
-          <button type="button" onClick={() => aoRemover(produto.id)}>
-            Remover
+          <button
+            type="button"
+            onClick={() => aoRemover(produto.id)}
+            disabled={carregandoRemocaoId === produto.id}
+          >
+            {carregandoRemocaoId === produto.id ? 'Removendo...' : 'Remover'}
           </button>
         </ProdutoCard>
       ))}
